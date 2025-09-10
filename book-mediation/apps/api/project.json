@@ -1,0 +1,51 @@
+{
+  "name": "api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api",
+        "main": "apps/api/src/main.ts",
+        "tsConfig": "apps/api/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true
+        }
+      }
+    },
+    "serve-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotenv -e apps/api/.env.development -- ts-node apps/api/src/main.ts",
+        "cwd": "."
+      }
+    },
+    "serve-qa": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotenv -e apps/api/.env.qa -- ts-node apps/api/src/main.ts",
+        "cwd": "."
+      }
+    },
+    "serve-prod": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "dotenv -e apps/api/.env.production -- node dist/apps/api/main.js",
+        "cwd": "."
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/api/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

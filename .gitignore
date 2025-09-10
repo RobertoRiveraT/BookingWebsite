@@ -1,3 +1,18 @@
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# Drizzle ORM
+drizzle/
+
+# Test reports
+*.xml
+cypress/reports/
+lcov-report/
+
+# VSCode local settings
+.vscode/
+
 # Logs
 logs
 *.log

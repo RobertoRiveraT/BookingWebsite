@@ -1,0 +1,36 @@
+{
+  "name": "web-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "web-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["web"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "web-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "web:dev"
+      }
+    },
+    "open-cypress": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "web-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "watch": true,
+        "devServerTarget": "web:dev"
+      }
+    },
+    "e2e-ci": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "web-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "web:dev",
+        "quiet": true
+      }
+    }
+  }
+}

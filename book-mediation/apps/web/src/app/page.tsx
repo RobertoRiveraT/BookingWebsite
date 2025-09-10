@@ -1,4 +1,5 @@
 import styles from './page.module.css';
+import EnvironmentBanner from "../../components/EnvironmentBanner";
 
 export default function Index() {
   /*
@@ -10,6 +11,7 @@ export default function Index() {
     <div className={styles.page}>
       <div className="wrapper">
         <div className="container">
+          <EnvironmentBanner />
           <div id="welcome">
             <h1>
               <span> Hello there, </span>

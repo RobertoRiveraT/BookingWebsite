@@ -1,20 +1,14 @@
-//@ts-check
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
+/** @type {import('@nx/next/plugins/with-nx').WithNxOptions} */
 const nextConfig = {
-  // Use this to set Nx-specific options
-  // See: https://nx.dev/recipes/next/next-config-setup
+  reactStrictMode: true,
+  env: {
+    NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
+  },
   nx: {},
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
+const plugins = [withNx];
 
 module.exports = composePlugins(...plugins)(nextConfig);
